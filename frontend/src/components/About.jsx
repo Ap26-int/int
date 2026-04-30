@@ -32,11 +32,11 @@ export default function About() {
               <div className="flex items-center gap-3">
                 <span className="w-6 h-px bg-[hsl(var(--gold))]" />
                 <span className="text-[hsl(var(--gold))] tracking-luxury uppercase text-[10px]">
-                  Award Winner
+                  Celebrity Interior Designer
                 </span>
               </div>
               <p className="text-[hsl(var(--ivory))] text-xs md:text-sm mt-2 font-light">
-                Sambita Bose felicitated for excellence in interior design
+                Sambita Bose felicitated for excellence in Celebrity interior design
               </p>
             </div>
           </div>
@@ -52,7 +52,7 @@ export default function About() {
               S.B.
             </div>
             <div className="text-[hsl(var(--muted-foreground))] text-[9px] sm:text-[10px] tracking-luxury uppercase mt-1.5 sm:mt-2">
-              Founder · Lead Designer
+              Celebrity Interior Designer
             </div>
           </motion.div>
         </motion.div>
