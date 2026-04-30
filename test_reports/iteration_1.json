@@ -1,0 +1,57 @@
+{
+  "summary": "End-to-end testing of Lumière By Sambita Bose luxury interior site. Backend leads API (8 pytest cases) all pass. Frontend landing page, navigation, portfolio filter+lightbox, contact form submission+validation+toast+clear, admin leads table, mobile menu, and WhatsApp CTA all verified working against the public REACT_APP_BACKEND_URL.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Hero (LandingPage)", "issues": ["Framer-motion console warning: 'Please ensure that the container has a non-static position, like relative/fixed/absolute to ensure scroll offset is calculated correctly.' - originates from useScroll target ref in Hero.jsx. Harmless but should be silenced by adding position: relative (currently the <section> has `relative` class so this warning likely comes from the motion.div or elsewhere — worth a quick audit)."]}
+    ]
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_leads_api.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "(Optional) Investigate framer-motion scroll-offset console warning in Hero.jsx — non-blocking."
+  ],
+  "critical_code_review_comments": [
+    "server.py create_lead uses broad try/except that turns Pydantic/DB errors into 500 — acceptable for MVP but consider letting FastAPI 422 flow naturally instead of wrapping in HTTPException 500.",
+    "GET /api/leads returns response_model=List[Lead] and leads already exclude _id via find projection — good.",
+    "ContactCTA uses form-level trim validation before POST — good. However there is no client-side email regex; relies on server Pydantic EmailStr. Works but error toast shows 'Submission failed.' for FastAPI 422 because detail is a list not a string. Consider formatting validation errors for user-facing message.",
+    "AdminLeads has no authentication — acceptable for MVP but should be noted; the admin endpoint is publicly accessible at /admin/leads.",
+    "Hero.jsx uses svh unit which is fine for modern browsers; fallback not provided.",
+    "No rate limiting on POST /api/leads — risk of spam.",
+    "All key interactive elements have data-testid — good."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_leads_api.py (new)"
+  ],
+  "success_rate": {"backend": "100% (8/8)", "frontend": "100% of listed flows"},
+  "test_credentials": "none required (admin is unauthenticated)",
+  "seed_data_creation": "Created ~5 TEST_-prefixed lead records in MongoDB via API during tests (safe to leave, admin view shows 6 entries total).",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Backend pytest suite at /app/backend/tests/test_leads_api.py covers health, create (valid/invalid email/missing fields/empty name/optional message) and list (shape + desc sort + no _id). Re-run with: pytest /app/backend/tests/test_leads_api.py -v. Frontend public URL is https://lumiere-interior.preview.emergentagent.com. Preloader ~1.8s so wait 3s+ before interacting with hero. All data-testids listed in review_request are present and working.",
+  "rca of the issue": "N/A — no blocking issues found.",
+  "verified_flows": [
+    "GET /api/ returns welcome message",
+    "POST /api/leads accepts valid payload, returns {success, id, message}",
+    "POST /api/leads rejects invalid email and missing required fields (422)",
+    "GET /api/leads returns list sorted desc by created_at, no _id",
+    "Landing page loads, preloader shown then hero appears with headline 'Elevate your Home, Celebrity Style.' and overline 'Lumière By Sambita Bose · Est. 2012'",
+    "Hero CTA 'View Portfolio' smooth-scrolls to #portfolio",
+    "Nav link 'Contact' smooth-scrolls to #contact",
+    "Portfolio filters reduce grid (All=7, Bedroom=2)",
+    "Portfolio item opens lightbox; close button works",
+    "Testimonials prev/next buttons clickable and cycle",
+    "Contact form: empty submit → error toast; valid submit → success toast 'Thank you. Our concierge will reach out within 24 hours.'; form cleared after success",
+    "/admin/leads renders leads-table with freshly-submitted TEST_UIClient lead visible",
+    "Mobile viewport (390x844): menu toggle opens & close works",
+    "WhatsApp CTA href points to wa.me/919810000000 with prefilled text",
+    "Dark luxury theme (black bg, gold/ivory accents) consistent across all sections"
+  ]
+}
