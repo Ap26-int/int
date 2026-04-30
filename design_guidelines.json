@@ -1,0 +1,176 @@
+{
+  "theme_and_archetype": {
+    "domain": "Interior Design, Luxury",
+    "theme": "Dark",
+    "archetype": "5 (Jewel & Luxury)",
+    "vibe": "Cinematic, sophisticated, aspirational, premium, glassmorphism, depth effects, parallax",
+    "tone": "Ultra-modern minimal luxury aesthetic"
+  },
+  "colors": {
+    "css_variables": {
+      ":root": {
+        "--background": "0 0% 100%",
+        "--foreground": "0 0% 4%"
+      },
+      ".dark": {
+        "--background": "0 0% 4%",
+        "--foreground": "40 33% 93%",
+        "--card": "0 0% 6%",
+        "--card-foreground": "40 33% 93%",
+        "--popover": "0 0% 6%",
+        "--popover-foreground": "40 33% 93%",
+        "--primary": "42 48% 58%",
+        "--primary-foreground": "0 0% 4%",
+        "--secondary": "0 0% 12%",
+        "--secondary-foreground": "40 33% 93%",
+        "--muted": "0 0% 12%",
+        "--muted-foreground": "0 0% 65%",
+        "--accent": "42 48% 58%",
+        "--accent-foreground": "0 0% 4%",
+        "--destructive": "0 62.8% 30.6%",
+        "--destructive-foreground": "0 0% 100%",
+        "--border": "0 0% 15%",
+        "--input": "0 0% 15%",
+        "--ring": "42 48% 58%",
+        "--radius": "0.5rem"
+      }
+    },
+    "palette_description": {
+      "base_black": "#0A0A0A (Deepest Obsidian Black, not pure 000)",
+      "ivory": "#F5EFE6 (Warm off-white for text to prevent eye strain)",
+      "antique_gold": "#C9A961 (Accent for CTAs, subtle borders, and highlights)",
+      "charcoal": "#1E1E1E (For elevated cards and section contrasts)"
+    }
+  },
+  "typography": {
+    "font_families": {
+      "heading": "Playfair Display, serif",
+      "body": "Manrope, sans-serif"
+    },
+    "hierarchy": {
+      "h1": "text-5xl sm:text-6xl lg:text-7xl font-light tracking-tighter leading-none",
+      "h2": "text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight",
+      "h3": "text-2xl sm:text-3xl font-light",
+      "h4": "text-xl sm:text-2xl font-medium tracking-wide",
+      "body": "text-base lg:text-lg leading-relaxed text-muted-foreground",
+      "overline": "text-xs tracking-[0.3em] uppercase text-primary font-semibold"
+    },
+    "rules": {
+      "anti_default": "No Inter or default sans for headings. Use Playfair Display with font-light.",
+      "alignment": "Left-align dense text. Center-align hero and massive impact statements.",
+      "contrast": "Text shadow over images for WCAG AA compliance."
+    }
+  },
+  "spacing_and_layout": {
+    "container_padding": "px-6 md:px-12 lg:px-24 py-20 lg:py-32",
+    "section_gap": "gap-16 lg:gap-32",
+    "grid_strategy": {
+      "portfolio": "Masonry/Bento layout (grid-cols-1 md:grid-cols-2 lg:grid-cols-3) with gap-6",
+      "services": "Grid cols-1 md:grid-cols-2 lg:grid-cols-3 with gap-8"
+    },
+    "image_constraints": "Mobile height max 80vh for hero images.",
+    "border_radius": "Subtle rounded edges (rounded-lg or rounded-xl max), no aggressive circles."
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 rounded-none px-8 py-6 text-sm tracking-[0.15em] uppercase font-semibold",
+      "secondary": "bg-transparent border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 rounded-none px-8 py-6 text-sm tracking-[0.15em] uppercase"
+    },
+    "header": {
+      "style": "Crystal Glassmorphism (backdrop-blur-xl bg-background/60 border-b border-white/5)",
+      "behavior": "Sticky top-0 z-50 transition-all duration-300"
+    },
+    "cards": {
+      "style": "bg-secondary/50 border border-border/50 backdrop-blur-sm p-8 transition-all duration-500 hover:-translate-y-2 hover:border-primary/30"
+    },
+    "inputs": {
+      "style": "bg-background border-b border-border border-t-0 border-x-0 rounded-none px-0 py-4 focus-visible:ring-0 focus-visible:border-primary text-foreground placeholder:text-muted-foreground transition-colors"
+    }
+  },
+  "animation_and_motion": {
+    "libraries": ["framer-motion", "lucide-react"],
+    "patterns": {
+      "scroll_reveal": "Initial opacity 0, y 40, transition ease-out duration 0.8s.",
+      "parallax": "Use framer-motion useScroll and useTransform for hero background image y-axis translation.",
+      "hover_effects": "Image zoom on hover (scale-105 transition-transform duration-700 ease-out).",
+      "micro_interactions": "Icon shift on hover, subtle gold glow (drop-shadow) on text."
+    }
+  },
+  "sections_breakdown": {
+    "hero": {
+      "layout": "Full screen (h-screen) relative container.",
+      "background": "Cinematic dark living room image with parallax effect.",
+      "overlay": "bg-gradient-to-t from-background via-background/40 to-transparent",
+      "content": "Center or left-aligned. Overline 'Lumière By Sambita Bose'. H1 'Elevate your Home, Celebrity Style'. CTA buttons.",
+      "motion": "Text stagger up, image parallax."
+    },
+    "about": {
+      "layout": "Split layout (grid cols-1 lg:grid-cols-2).",
+      "visual": "High-end portrait or luxury detail shot.",
+      "content": "Story of the brand. Signature quote in italic serif. Large typography.",
+      "motion": "Image scale-in, text fade right."
+    },
+    "services": {
+      "layout": "Grid layout.",
+      "items": "Cards with Lucide icons (Crown, Building, Home, Sofa). Hover animates icon (rotate/scale) and adds subtle gold border.",
+      "categories": ["Residential Interiors", "Luxury Apartment Design", "Villa & Penthouse Styling", "Turnkey Projects", "Custom Furniture & Decor"]
+    },
+    "portfolio": {
+      "layout": "Filterable Masonry/Bento grid.",
+      "interactions": "Hover reveals dark gradient overlay with title and category. Image scale 1.05.",
+      "categories": ["Living Room", "Bedroom", "Kitchen", "Full Home"]
+    },
+    "why_choose_us": {
+      "layout": "Dark high-contrast section. 4 columns for counters.",
+      "content": "Bespoke Designs, Premium Materials, Celebrity-Level Finishing, End-to-End Execution.",
+      "features": "Framer motion animated number counters."
+    },
+    "testimonials": {
+      "layout": "Slider or horizontal scroll.",
+      "card": "Glassmorphism card, gold star ratings (5 stars), elegant serif typography for the quote."
+    },
+    "contact_cta": {
+      "layout": "Split section: Left side lead capture form, Right side contact details & map.",
+      "form": "Minimal, border-bottom only inputs (Name, Phone, Email, Project Type). Submit button full width.",
+      "details": "Address in Rohini, Delhi. Google Map iframe (dark mode styled if possible via CSS filter). WhatsApp quick connect CTA button (bg-green-600 or styled to brand gold)."
+    },
+    "footer": {
+      "layout": "Minimalist, py-20. Large brand wordmark at the top. Grid for links and social icons.",
+      "socials": "Instagram, Pinterest, LinkedIn (Lucide icons).",
+      "copyright": "Small text-muted-foreground."
+    }
+  },
+  "media_urls": {
+    "logo": {
+      "main": "https://customer-assets.emergentagent.com/job_7b8911d9-8f99-49c0-b0e2-7b5f58a79eb7/artifacts/qz46mmu4_image.png",
+      "description": "Gold wordmark and ornate chair on black background."
+    },
+    "hero_background": {
+      "url": "https://images.pexels.com/photos/13722886/pexels-photo-13722886.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920",
+      "description": "Sleek modern living room featuring dark tones and elegant furnishings with ambient lighting."
+    },
+    "about_image": {
+      "url": "https://images.unsplash.com/photo-1773867567872-3ad1fa481082?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDF8MHwxfHNlYXJjaHwzfHxsdXh1cnklMjBkYXJrJTIwaW50ZXJpb3IlMjBsaXZpbmclMjByb29tfGVufDB8fHx8MTc3NzU2NTcyMHww&ixlib=rb-4.1.0&q=85",
+      "description": "Modern living room with fireplace."
+    },
+    "portfolio": {
+      "living_room_1": "https://images.pexels.com/photos/30666576/pexels-photo-30666576.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "living_room_2": "https://images.unsplash.com/photo-1765767056681-9583b29007cf?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDF8MHwxfHNlYXJjaHwyfHxsdXh1cnklMjBkYXJrJTIwaW50ZXJpb3IlMjBsaXZpbmclMjByb29tfGVufDB8fHx8MTc3NzU2NTcyMHww&ixlib=rb-4.1.0&q=85",
+      "bedroom_1": "https://images.unsplash.com/photo-1668089677938-b52086753f77?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzV8MHwxfHNlYXJjaHw0fHxsdXh1cnklMjBtb2Rlcm4lMjBiZWRyb29tJTIwaW50ZXJpb3J8ZW58MHx8fHwxNzc3NTY1NzIwfDA&ixlib=rb-4.1.0&q=85",
+      "bedroom_2": "https://images.unsplash.com/photo-1639751907353-3629fc00d2b2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzV8MHwxfHNlYXJjaHwzfHxsdXh1cnklMjBtb2Rlcm4lMjBiZWRyb29tJTIwaW50ZXJpb3J8ZW58MHx8fHwxNzc3NTY1NzIwfDA&ixlib=rb-4.1.0&q=85",
+      "kitchen_1": "https://images.pexels.com/photos/8082304/pexels-photo-8082304.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "kitchen_2": "https://images.pexels.com/photos/35189708/pexels-photo-35189708.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "villa_1": "https://images.unsplash.com/photo-1772065729709-898bc1ba37dd?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzR8MHwxfHNlYXJjaHwyfHxsdXh1cnklMjBwZW50aG91c2UlMjB2aWxsYSUyMGV4dGVyaW9yfGVufDB8fHx8MTc3NzU2NTcyMHww&ixlib=rb-4.1.0&q=85"
+    }
+  },
+  "instructions_to_main_agent": [
+    "Ensure dark mode is strictly forced or is the default theme across the app.",
+    "Use Playfair Display for all H1-H4 headings and Manrope for body text. Make sure to import them via Google Fonts.",
+    "For the hero section, implement a cinematic parallax scroll effect using framer-motion.",
+    "When applying gold accents, use text-primary or bg-primary. Do not overwhelm the dark theme; let the black background create the luxury feel.",
+    "Do not use generic Shadcn button styles for the primary CTAs; adhere strictly to the sharp, non-rounded button styles defined in the components section.",
+    "Inject the provided logo in the sticky header and the footer.",
+    "Ensure the layout relies heavily on generous padding (py-24 or py-32) to let the typography and images breathe.",
+    "Add 'data-testid' to all interactive elements for testing."
+  ]
+}
