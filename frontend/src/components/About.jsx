@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 
 const ABOUT_IMG =
-  "https://images.unsplash.com/photo-1773867567872-3ad1fa481082?crop=entropy&cs=srgb&fm=jpg&q=85&w=1400";
+  "https://customer-assets.emergentagent.com/job_lumiere-interior/artifacts/c05zcsby_hom-abt.jpg";
 
 export default function About() {
   return (
@@ -23,10 +23,22 @@ export default function About() {
           <div className="lux-image-frame aspect-[4/5] w-full">
             <img
               src={ABOUT_IMG}
-              alt="Sambita Bose atelier"
-              className="w-full h-full object-cover"
+              alt="Sambita Bose receiving an industry award alongside Arbaaz Khan"
+              className="w-full h-full object-cover object-center"
             />
             <div className="absolute inset-0 ring-1 ring-inset ring-[hsl(var(--gold)/0.2)]" />
+            {/* Award caption */}
+            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[hsl(var(--obsidian))] via-[hsl(var(--obsidian)/0.85)] to-transparent pt-16 pb-5 px-6">
+              <div className="flex items-center gap-3">
+                <span className="w-6 h-px bg-[hsl(var(--gold))]" />
+                <span className="text-[hsl(var(--gold))] tracking-luxury uppercase text-[10px]">
+                  Award Winner
+                </span>
+              </div>
+              <p className="text-[hsl(var(--ivory))] text-xs md:text-sm mt-2 font-light">
+                Sambita Bose felicitated for excellence in interior design
+              </p>
+            </div>
           </div>
           {/* Floating year badge */}
           <motion.div
