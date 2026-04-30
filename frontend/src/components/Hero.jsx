@@ -61,7 +61,7 @@ export default function Hero() {
       {/* Content */}
       <motion.div
         style={{ opacity }}
-        className="relative z-10 h-full lux-container flex flex-col justify-center"
+        className="relative z-10 h-full lux-container flex flex-col justify-center pt-24 sm:pt-28 lg:pt-32"
       >
         <motion.div
           variants={stagger}
@@ -70,13 +70,13 @@ export default function Hero() {
           className="max-w-5xl"
         >
           {/* Overline */}
-          <motion.div variants={item} className="flex items-center gap-4 mb-8">
-            <span className="w-12 h-px bg-[hsl(var(--gold))]" />
+          <motion.div variants={item} className="flex items-center gap-4 mb-6 sm:mb-8">
+            <span className="w-10 sm:w-12 h-px bg-[hsl(var(--gold))]" />
             <span
               className="text-[hsl(var(--gold))] tracking-luxury uppercase text-[10px] md:text-xs font-medium"
               data-testid="hero-overline"
             >
-              Lumière By Sambita Bose · Est. 2012
+              Bespoke Interior Atelier · Est. 2012
             </span>
           </motion.div>
 
