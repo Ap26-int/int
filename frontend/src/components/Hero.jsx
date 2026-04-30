@@ -137,7 +137,7 @@ export default function Hero() {
             Scroll to enter the studio
           </div>
           <div className="text-[hsl(var(--ivory)/0.5)] text-[10px] tracking-luxury uppercase">
-            Rohini · New Delhi
+            New Delhi, India
           </div>
         </motion.div>
       </motion.div>
