@@ -40,7 +40,7 @@ export default function About() {
               </p>
             </div>
           </div>
-          {/* Floating year badge */}
+          {/* Floating founder monogram badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -48,11 +48,11 @@ export default function About() {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="absolute -bottom-6 -right-6 lg:-bottom-10 lg:-right-10 bg-[hsl(var(--obsidian))] border border-[hsl(var(--gold)/0.3)] px-8 py-6 backdrop-blur-sm"
           >
-            <div className="font-display text-[hsl(var(--gold))] text-5xl lg:text-6xl">
-              2012
+            <div className="font-display italic text-[hsl(var(--gold))] text-5xl lg:text-6xl leading-none">
+              S.B.
             </div>
-            <div className="text-[hsl(var(--muted-foreground))] text-[10px] tracking-luxury uppercase mt-1">
-              Atelier Established
+            <div className="text-[hsl(var(--muted-foreground))] text-[10px] tracking-luxury uppercase mt-2">
+              Founder · Lead Designer
             </div>
           </motion.div>
         </motion.div>
