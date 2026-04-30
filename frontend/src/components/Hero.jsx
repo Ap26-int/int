@@ -130,9 +130,9 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.6, duration: 1 }}
-          className="absolute bottom-10 inset-x-0 lux-container flex items-end justify-between gap-6"
+          className="hidden xl:flex absolute bottom-8 inset-x-0 lux-container items-end justify-between gap-6 pointer-events-none"
         >
-          <div className="hidden md:flex items-center gap-3 text-[hsl(var(--ivory)/0.5)] text-[10px] tracking-luxury uppercase">
+          <div className="flex items-center gap-3 text-[hsl(var(--ivory)/0.5)] text-[10px] tracking-luxury uppercase">
             <span className="w-8 h-px bg-[hsl(var(--ivory)/0.3)]" />
             Scroll to enter the studio
           </div>
