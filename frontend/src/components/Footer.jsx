@@ -11,10 +11,10 @@ export default function Footer() {
       <div className="lux-container">
         {/* Giant brand wordmark */}
         <div className="text-center mb-16">
-          <div className="text-[hsl(var(--gold))] text-[10px] tracking-luxury uppercase mb-4">
+          <div className="text-[hsl(var(--gold))] text-[9px] sm:text-[10px] tracking-luxury uppercase mb-3 sm:mb-4 px-2">
             {BRAND.tagline}
           </div>
-          <h3 className="font-display italic text-[hsl(var(--ivory))] text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] leading-none tracking-tight">
+          <h3 className="font-display italic text-[hsl(var(--ivory))] text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] leading-none tracking-tight">
             Lumière
           </h3>
           <div className="text-[hsl(var(--muted-foreground))] text-xs tracking-luxury uppercase mt-3">

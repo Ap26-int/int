@@ -33,7 +33,7 @@ export default function Testimonials() {
                 Testimonials
               </span>
             </div>
-            <h2 className="font-display text-[hsl(var(--ivory))] text-4xl md:text-5xl lg:text-5xl font-light leading-[1.05] tracking-tight">
+            <h2 className="font-display text-[hsl(var(--ivory))] text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-light leading-[1.05] tracking-tight">
               Quietly,
               <br />
               <em className="italic text-[hsl(var(--gold))]">our clients</em>
@@ -74,14 +74,14 @@ export default function Testimonials() {
                 exit={{ opacity: 0, y: -24 }}
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 data-testid={`testimonial-card-${i}`}
-                className="relative bg-[hsl(0_0%_5%)] border border-[hsl(var(--gold)/0.18)] p-10 lg:p-14"
+                className="relative bg-[hsl(0_0%_5%)] border border-[hsl(var(--gold)/0.18)] p-7 sm:p-10 lg:p-14"
               >
                 <Quote
-                  size={48}
+                  size={40}
                   strokeWidth={0.6}
-                  className="absolute top-8 right-8 text-[hsl(var(--gold)/0.25)]"
+                  className="absolute top-6 right-6 sm:top-8 sm:right-8 text-[hsl(var(--gold)/0.25)]"
                 />
-                <div className="flex gap-1 mb-8">
+                <div className="flex gap-1 mb-6 sm:mb-8">
                   {Array.from({ length: t.rating }).map((_, idx) => (
                     <Star
                       key={idx}
@@ -93,7 +93,7 @@ export default function Testimonials() {
                   ))}
                 </div>
 
-                <p className="font-display italic text-[hsl(var(--ivory))] text-2xl md:text-3xl lg:text-4xl leading-snug font-light">
+                <p className="font-display italic text-[hsl(var(--ivory))] text-lg sm:text-2xl md:text-3xl lg:text-4xl leading-snug font-light">
                   "{t.quote}"
                 </p>
 

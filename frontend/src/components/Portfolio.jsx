@@ -32,7 +32,7 @@ export default function Portfolio() {
                 Portfolio · Selected Works
               </span>
             </div>
-            <h2 className="font-display text-[hsl(var(--ivory))] text-4xl md:text-5xl lg:text-6xl font-light leading-[1.05] tracking-tight">
+            <h2 className="font-display text-[hsl(var(--ivory))] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-[1.05] tracking-tight">
               Homes that hold
               <br />
               <em className="italic text-[hsl(var(--gold))]">
@@ -42,13 +42,13 @@ export default function Portfolio() {
           </motion.div>
 
           {/* Filters */}
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
             {PORTFOLIO_CATEGORIES.map((c) => (
               <button
                 key={c}
                 data-testid={`filter-${c.toLowerCase().replace(/\s+/g, "-")}`}
                 onClick={() => setFilter(c)}
-                className={`px-5 py-2.5 text-[10px] tracking-luxury uppercase border transition-all duration-400 ${
+                className={`px-3.5 sm:px-5 py-2 sm:py-2.5 text-[9px] sm:text-[10px] tracking-luxury uppercase border transition-all duration-400 ${
                   filter === c
                     ? "bg-[hsl(var(--gold))] text-[hsl(var(--obsidian))] border-[hsl(var(--gold))]"
                     : "border-[hsl(var(--border))] text-[hsl(var(--muted-foreground))] hover:border-[hsl(var(--gold))] hover:text-[hsl(var(--gold))]"

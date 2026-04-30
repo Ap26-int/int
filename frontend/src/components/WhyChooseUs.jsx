@@ -55,7 +55,7 @@ export default function WhyChooseUs() {
                 Why Lumière
               </span>
             </div>
-            <h2 className="font-display text-[hsl(var(--ivory))] text-4xl md:text-5xl lg:text-6xl font-light leading-[1.05] tracking-tight">
+            <h2 className="font-display text-[hsl(var(--ivory))] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-[1.05] tracking-tight">
               Twelve years.
               <br />
               <em className="italic text-[hsl(var(--gold))]">
@@ -75,15 +75,15 @@ export default function WhyChooseUs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: i * 0.1 }}
-              className="bg-[hsl(var(--obsidian))] p-8 lg:p-12"
+              className="bg-[hsl(var(--obsidian))] p-7 sm:p-8 lg:p-12"
             >
-              <div className="font-display text-[hsl(var(--gold))] text-6xl lg:text-7xl font-light leading-none">
+              <div className="font-display text-[hsl(var(--gold))] text-5xl sm:text-6xl lg:text-7xl font-light leading-none">
                 <Counter to={w.number} suffix={w.suffix} inView={inView} />
               </div>
-              <div className="mt-6 text-[hsl(var(--ivory))] text-base lg:text-lg font-medium">
+              <div className="mt-5 sm:mt-6 text-[hsl(var(--ivory))] text-sm sm:text-base lg:text-lg font-medium">
                 {w.label}
               </div>
-              <div className="mt-3 text-[hsl(var(--muted-foreground))] text-sm leading-relaxed font-light">
+              <div className="mt-2 sm:mt-3 text-[hsl(var(--muted-foreground))] text-xs sm:text-sm leading-relaxed font-light">
                 {w.description}
               </div>
             </motion.div>

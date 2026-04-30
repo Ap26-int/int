@@ -84,7 +84,7 @@ export default function Hero() {
           <motion.h1
             variants={item}
             data-testid="hero-headline"
-            className="font-display text-[hsl(var(--ivory))] text-5xl sm:text-6xl md:text-7xl lg:text-[7.5rem] leading-[0.95] tracking-[-0.02em] font-light"
+            className="font-display text-[hsl(var(--ivory))] text-[2.5rem] xs:text-5xl sm:text-6xl md:text-7xl lg:text-[7.5rem] leading-[0.95] tracking-[-0.02em] font-light"
           >
             Elevate your <em className="italic text-[hsl(var(--gold))]">Home</em>,
             <br />
@@ -94,7 +94,7 @@ export default function Hero() {
           {/* Subtext */}
           <motion.p
             variants={item}
-            className="mt-10 max-w-xl text-[hsl(var(--muted-foreground))] text-base md:text-lg leading-relaxed font-light"
+            className="mt-8 sm:mt-10 max-w-xl text-[hsl(var(--muted-foreground))] text-sm sm:text-base md:text-lg leading-relaxed font-light"
           >
             Bespoke residential interiors crafted for India's most discerning
             homeowners. Quiet luxury, considered detail, finished to a
@@ -104,12 +104,12 @@ export default function Hero() {
           {/* CTAs */}
           <motion.div
             variants={item}
-            className="mt-12 flex flex-wrap items-center gap-4"
+            className="mt-10 sm:mt-12 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4"
           >
             <button
               data-testid="hero-cta-consult"
               onClick={() => handleScroll("#contact")}
-              className="btn-gold"
+              className="btn-gold justify-center"
             >
               Book a Consultation
               <ArrowRight size={14} strokeWidth={1.5} />
@@ -117,7 +117,7 @@ export default function Hero() {
             <button
               data-testid="hero-cta-portfolio"
               onClick={() => handleScroll("#portfolio")}
-              className="btn-ghost-gold"
+              className="btn-ghost-gold justify-center"
             >
               View Portfolio
               <ArrowDownRight size={14} strokeWidth={1.5} />

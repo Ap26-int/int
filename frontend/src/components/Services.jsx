@@ -35,7 +35,7 @@ export default function Services() {
                 Services
               </span>
             </div>
-            <h2 className="font-display text-[hsl(var(--ivory))] text-4xl md:text-5xl lg:text-6xl font-light leading-[1.05] tracking-tight">
+            <h2 className="font-display text-[hsl(var(--ivory))] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-[1.05] tracking-tight">
               Six disciplines.
               <br />
               <em className="italic text-[hsl(var(--gold))]">
@@ -72,7 +72,7 @@ export default function Services() {
                   delay: i * 0.08,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="group relative bg-[hsl(var(--obsidian))] p-8 lg:p-12 transition-colors duration-700 hover:bg-[hsl(0_0%_5%)] cursor-default"
+                className="group relative bg-[hsl(var(--obsidian))] p-7 sm:p-8 lg:p-12 transition-colors duration-700 hover:bg-[hsl(0_0%_5%)] cursor-default"
               >
                 {/* Number */}
                 <div className="font-display text-[hsl(var(--gold)/0.3)] text-sm tracking-widest absolute top-8 right-8 group-hover:text-[hsl(var(--gold))] transition-colors duration-500">
@@ -85,7 +85,7 @@ export default function Services() {
                   className="text-[hsl(var(--gold))] mb-8 transition-transform duration-700 group-hover:-translate-y-1 group-hover:rotate-[-4deg]"
                 />
 
-                <h3 className="font-display text-[hsl(var(--ivory))] text-2xl lg:text-3xl font-light leading-tight mb-4 group-hover:text-[hsl(var(--gold))] transition-colors duration-500">
+                <h3 className="font-display text-[hsl(var(--ivory))] text-xl sm:text-2xl lg:text-3xl font-light leading-tight mb-3 sm:mb-4 group-hover:text-[hsl(var(--gold))] transition-colors duration-500">
                   {s.title}
                 </h3>
 

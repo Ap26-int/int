@@ -46,12 +46,12 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4, duration: 0.8 }}
-            className="absolute -bottom-6 -right-6 lg:-bottom-10 lg:-right-10 bg-[hsl(var(--obsidian))] border border-[hsl(var(--gold)/0.3)] px-8 py-6 backdrop-blur-sm"
+            className="absolute -bottom-4 right-4 sm:-bottom-6 sm:-right-6 lg:-bottom-10 lg:-right-10 bg-[hsl(var(--obsidian))] border border-[hsl(var(--gold)/0.3)] px-5 py-4 sm:px-8 sm:py-6 backdrop-blur-sm"
           >
-            <div className="font-display italic text-[hsl(var(--gold))] text-5xl lg:text-6xl leading-none">
+            <div className="font-display italic text-[hsl(var(--gold))] text-3xl sm:text-5xl lg:text-6xl leading-none">
               S.B.
             </div>
-            <div className="text-[hsl(var(--muted-foreground))] text-[10px] tracking-luxury uppercase mt-2">
+            <div className="text-[hsl(var(--muted-foreground))] text-[9px] sm:text-[10px] tracking-luxury uppercase mt-1.5 sm:mt-2">
               Founder · Lead Designer
             </div>
           </motion.div>
@@ -72,14 +72,14 @@ export default function About() {
             </span>
           </div>
 
-          <h2 className="font-display text-[hsl(var(--ivory))] text-4xl md:text-5xl lg:text-6xl font-light leading-[1.05] tracking-tight">
+          <h2 className="font-display text-[hsl(var(--ivory))] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-[1.05] tracking-tight">
             Interiors composed
             <br />
             <em className="italic text-[hsl(var(--gold))]">like couture</em> —
             measured, draped, finished by hand.
           </h2>
 
-          <div className="mt-10 space-y-6 text-[hsl(var(--muted-foreground))] text-base md:text-lg leading-relaxed font-light max-w-xl">
+          <div className="mt-8 sm:mt-10 space-y-5 sm:space-y-6 text-[hsl(var(--muted-foreground))] text-sm sm:text-base md:text-lg leading-relaxed font-light max-w-xl">
             <p>
               Lumière is the private design atelier of <strong className="text-[hsl(var(--ivory))] font-medium">Sambita Bose</strong> — a designer
               celebrated for the still, almost cinematic homes she creates for
@@ -94,17 +94,17 @@ export default function About() {
           </div>
 
           {/* Signature quote */}
-          <div className="mt-12 pl-6 border-l-2 border-[hsl(var(--gold))] max-w-xl">
+          <div className="mt-10 sm:mt-12 pl-5 sm:pl-6 border-l-2 border-[hsl(var(--gold))] max-w-xl">
             <Quote
-              size={28}
+              size={24}
               strokeWidth={1}
-              className="text-[hsl(var(--gold))] mb-4"
+              className="text-[hsl(var(--gold))] mb-3 sm:mb-4"
             />
-            <p className="font-display italic text-[hsl(var(--ivory))] text-xl md:text-2xl leading-snug">
+            <p className="font-display italic text-[hsl(var(--ivory))] text-lg sm:text-xl md:text-2xl leading-snug">
               "A home should hold you the way an old song does — softly, and
               completely."
             </p>
-            <p className="mt-4 text-[hsl(var(--gold))] text-xs tracking-luxury uppercase">
+            <p className="mt-3 sm:mt-4 text-[hsl(var(--gold))] text-[10px] sm:text-xs tracking-luxury uppercase">
               — Sambita Bose, Founder
             </p>
           </div>

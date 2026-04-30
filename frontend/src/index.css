@@ -122,11 +122,11 @@ body {
 .btn-gold {
     background: hsl(var(--gold));
     color: hsl(var(--obsidian));
-    padding: 1.1rem 2.4rem;
+    padding: 0.95rem 1.8rem;
     font-family: 'Manrope', sans-serif;
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     font-weight: 600;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     border: 1px solid hsl(var(--gold));
     transition: all 400ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -137,10 +137,17 @@ body {
     position: relative;
     overflow: hidden;
 }
+@media (min-width: 640px) {
+    .btn-gold {
+        padding: 1.1rem 2.4rem;
+        font-size: 0.72rem;
+        letter-spacing: 0.22em;
+    }
+}
 .btn-gold:hover {
     background: transparent;
     color: hsl(var(--gold));
-    letter-spacing: 0.28em;
+    letter-spacing: 0.26em;
 }
 .btn-gold::after {
     content: '';
@@ -162,11 +169,11 @@ body {
 .btn-ghost-gold {
     background: transparent;
     color: hsl(var(--gold));
-    padding: 1.1rem 2.4rem;
+    padding: 0.95rem 1.8rem;
     font-family: 'Manrope', sans-serif;
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     font-weight: 600;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     border: 1px solid hsl(var(--gold) / 0.6);
     transition: all 400ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -175,17 +182,30 @@ body {
     align-items: center;
     gap: 0.6rem;
 }
+@media (min-width: 640px) {
+    .btn-ghost-gold {
+        padding: 1.1rem 2.4rem;
+        font-size: 0.72rem;
+        letter-spacing: 0.22em;
+    }
+}
 .btn-ghost-gold:hover {
     background: hsl(var(--gold));
     color: hsl(var(--obsidian));
     border-color: hsl(var(--gold));
-    letter-spacing: 0.28em;
+    letter-spacing: 0.26em;
 }
 
 /* Section vertical rhythm */
 .lux-section {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+}
+@media (min-width: 640px) {
+    .lux-section {
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+    }
 }
 @media (min-width: 768px) {
     .lux-section {
@@ -203,8 +223,14 @@ body {
 .lux-container {
     max-width: 1440px;
     margin: 0 auto;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+}
+@media (min-width: 640px) {
+    .lux-container {
+        padding-left: 1.75rem;
+        padding-right: 1.75rem;
+    }
 }
 @media (min-width: 768px) {
     .lux-container {

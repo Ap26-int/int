@@ -68,14 +68,14 @@ export default function ContactCTA() {
                 Begin Your Project
               </span>
             </div>
-            <h2 className="font-display text-[hsl(var(--ivory))] text-4xl md:text-5xl lg:text-6xl font-light leading-[1.02] tracking-tight">
+            <h2 className="font-display text-[hsl(var(--ivory))] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-[1.02] tracking-tight">
               Let's design your
               <br />
               <em className="italic text-[hsl(var(--gold))]">
                 dream space.
               </em>
             </h2>
-            <p className="mt-6 text-[hsl(var(--muted-foreground))] text-base lg:text-lg max-w-lg leading-relaxed font-light">
+            <p className="mt-5 sm:mt-6 text-[hsl(var(--muted-foreground))] text-sm sm:text-base lg:text-lg max-w-lg leading-relaxed font-light">
               Share a few details. A senior member of our studio will reach out
               within 24 hours to schedule a private consultation.
             </p>
@@ -185,7 +185,7 @@ export default function ContactCTA() {
             transition={{ duration: 0.9, delay: 0.15 }}
             className="lg:col-span-5"
           >
-            <div className="bg-[hsl(var(--obsidian))] border border-[hsl(var(--gold)/0.18)] p-8 lg:p-10 space-y-8">
+            <div className="bg-[hsl(var(--obsidian))] border border-[hsl(var(--gold)/0.18)] p-7 sm:p-8 lg:p-10 space-y-6 sm:space-y-8">
               <div>
                 <span className="text-[hsl(var(--gold))] tracking-luxury uppercase text-[10px] font-medium">
                   The Studio
