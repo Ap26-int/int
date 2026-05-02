@@ -37,16 +37,15 @@ export default function Header() {
           <button
             data-testid="header-logo"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="flex items-center gap-3 group"
+            className="flex items-center group"
+            aria-label="Lumière By Sambita Bose"
           >
-            <div className="flex flex-col items-start leading-none">
-              <span className="font-display text-[hsl(var(--ivory))] text-2xl lg:text-3xl tracking-tight italic group-hover:text-[hsl(var(--gold))] transition-colors duration-500">
-                Lumière
-              </span>
-              <span className="text-[hsl(var(--gold))] text-[9px] tracking-luxury uppercase mt-1">
-                By Sambita Bose
-              </span>
-            </div>
+            <img
+              src="https://customer-assets.emergentagent.com/job_lumiere-interior/artifacts/jpmg43bd_image.png"
+              alt="Lumière By Sambita Bose"
+              className="h-14 md:h-16 lg:h-[72px] w-auto object-contain lumiere-logo"
+              loading="eager"
+            />
           </button>
 
           {/* Desktop Nav */}
@@ -95,10 +94,12 @@ export default function Header() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[60] bg-[hsl(var(--obsidian))] lg:hidden"
           >
-            <div className="lux-container py-6 flex justify-between items-center">
-              <span className="font-display italic text-[hsl(var(--ivory))] text-2xl">
-                Lumière
-              </span>
+            <div className="lux-container py-5 flex justify-between items-center">
+              <img
+                src="https://customer-assets.emergentagent.com/job_lumiere-interior/artifacts/jpmg43bd_image.png"
+                alt="Lumière By Sambita Bose"
+                className="h-12 w-auto object-contain lumiere-logo"
+              />
               <button
                 data-testid="mobile-menu-close"
                 onClick={() => setOpen(false)}
