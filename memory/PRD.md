@@ -15,24 +15,26 @@ Build a premium, ultra-luxury landing page for "Lumière By Sambita Bose", a bes
 - Mobile-first responsive
 - Single-page experience with anchor sections
 
-## What's Been Implemented (2026-04-30)
-- **Backend (FastAPI + MongoDB)**
-  - `POST /api/leads` — Create lead (name, phone, email, project_type, message)
-  - `GET /api/leads` — List leads, desc by created_at, _id excluded
-  - Pydantic validation incl. EmailStr
+## What's Been Implemented (2026-04-30 → 2026-05-03)
+- **Backend (FastAPI + MongoDB + Resend)**
+  - `POST /api/leads` — Create lead with `source` tracking (site/popup_offer/main_form)
+  - `GET /api/leads` — List leads, desc by created_at, _id excluded, includes source
+  - Resend email notification on new lead (fire-and-forget, non-blocking) → studio@lumierebysambita.com
+  - HTML luxury email template with all lead fields
+  - Pydantic validation incl. EmailStr; email failures do not block lead save
 - **Frontend (React + Tailwind + framer-motion)**
-  - Preloader with gold reveal animation
-  - Sticky header (glassmorphism) + mobile drawer
-  - Hero with parallax background, staggered text reveal, 2 CTAs
-  - About with split layout, signature quote, founding-year badge
-  - Services — 6-card luxury grid with hover icon micro-interactions
-  - Portfolio — filterable bento masonry (5 categories), lightbox modal
-  - Why Choose Us — 4 animated counters (useInView)
-  - Testimonials — slider with prev/next
-  - Contact CTA — full lead form (sonner toast feedback) + studio details + WhatsApp CTA + dark-styled Google Maps embed
-  - Footer — giant brand wordmark + social links
-  - `/admin/leads` route — table view of all submissions
-- **Testing**: 100% backend (8/8 pytest), 100% frontend flows verified by testing agent (iteration_1.json)
+  - Preloader, sticky glassmorphism header with real LS logo (transparent PNG), mobile drawer
+  - Hero with parallax, **offer pill** ("This Week · Flat 10% Off")
+  - About section with founder award photo + S.B. monogram
+  - Services — 6-card luxury grid
+  - Portfolio — filterable bento masonry with lightbox
+  - Why Choose Us — 4 animated counters
+  - Testimonials slider
+  - **Contact CTA with offer banner** + "Claim My 10% Offer" button
+  - **EnquiryPopup** — auto-opens 8s after landing, shows studio image + offer + compact form; sessionStorage-gated
+  - Footer with actual logo (not wordmark)
+  - `/admin/leads` route — table with new **Source** column (site / popup_offer / main_form)
+- **Testing**: iteration_1 + iteration_2 both 100% pass (backend 10/10 pytest, frontend flows all verified)
 
 ## Prioritized Backlog
 - **P1** — Add basic auth/password gate on `/admin/leads`
