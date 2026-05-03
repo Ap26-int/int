@@ -315,14 +315,6 @@ body {
     transform: rotate(180deg);
 }
 
-/* Luxury logo — knocks out dark background via screen blend, crops empty space */
-.lumiere-logo {
-    mix-blend-mode: screen;
-    filter: brightness(1.08) contrast(1.05);
-    transform: scale(1.18);
-    transform-origin: left center;
-}
-
 /* Preloader */
 .preloader-line {
     height: 1px;
