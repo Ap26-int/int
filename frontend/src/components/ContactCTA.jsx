@@ -30,7 +30,10 @@ export default function ContactCTA() {
     }
     setLoading(true);
     try {
-      const { data } = await axios.post(`${API}/leads`, form);
+      const { data } = await axios.post(`${API}/leads`, {
+        ...form,
+        source: "main_form",
+      });
       toast.success(data.message || "Thank you. We will be in touch.");
       setForm(initial);
     } catch (err) {
@@ -79,6 +82,28 @@ export default function ContactCTA() {
               Share a few details. A senior member of our studio will reach out
               within 24 hours to schedule a private consultation.
             </p>
+
+            {/* Offer strip */}
+            <div
+              data-testid="contact-offer-banner"
+              className="mt-6 sm:mt-8 border border-[hsl(var(--gold))] bg-[hsl(var(--gold)/0.08)] p-4 sm:p-5 flex items-start gap-3"
+            >
+              <span className="flex-shrink-0 w-7 h-7 rounded-full border border-[hsl(var(--gold))] flex items-center justify-center text-[hsl(var(--gold))] text-xs font-semibold">
+                %
+              </span>
+              <div>
+                <div className="text-[hsl(var(--gold))] text-[10px] tracking-luxury uppercase mb-1">
+                  This Week Only
+                </div>
+                <div className="text-[hsl(var(--ivory))] text-sm sm:text-base font-light">
+                  Enquire now and receive{" "}
+                  <strong className="text-[hsl(var(--gold))] font-medium">
+                    flat 10% off your first project
+                  </strong>{" "}
+                  + a complimentary 60-minute consultation.
+                </div>
+              </div>
+            </div>
 
             <form
               onSubmit={submit}
@@ -170,7 +195,7 @@ export default function ContactCTA() {
                   disabled={loading}
                   className="btn-gold w-full md:w-auto disabled:opacity-60"
                 >
-                  {loading ? "Sending..." : "Get Free Consultation"}
+                  {loading ? "Sending..." : "Claim My 10% Offer"}
                   <ArrowRight size={14} strokeWidth={1.5} />
                 </button>
               </div>

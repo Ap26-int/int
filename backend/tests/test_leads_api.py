@@ -91,6 +91,42 @@ class TestCreateLead:
         r = api.post(f"{BASE_URL}/api/leads", json=payload)
         assert r.status_code in (400, 422)
 
+    def test_create_lead_with_source(self, api):
+        unique = uuid.uuid4().hex[:8]
+        payload = {
+            "name": f"TEST_Source_{unique}",
+            "phone": "+919876543211",
+            "email": f"src_{unique}@example.com",
+            "project_type": "Full Home",
+            "message": "Source test",
+            "source": "popup_offer",
+        }
+        r = api.post(f"{BASE_URL}/api/leads", json=payload)
+        assert r.status_code == 200, r.text
+        assert r.json()["success"] is True
+        # Verify persisted source
+        r2 = api.get(f"{BASE_URL}/api/leads")
+        leads = r2.json()
+        match = [l for l in leads if l["id"] == r.json()["id"]]
+        assert len(match) == 1
+        assert match[0]["source"] == "popup_offer"
+
+    def test_create_lead_default_source(self, api):
+        unique = uuid.uuid4().hex[:8]
+        payload = {
+            "name": f"TEST_DefSrc_{unique}",
+            "phone": "+919876543212",
+            "email": f"defsrc_{unique}@example.com",
+            "project_type": "Kitchen",
+        }
+        r = api.post(f"{BASE_URL}/api/leads", json=payload)
+        assert r.status_code == 200, r.text
+        # Verify default source
+        r2 = api.get(f"{BASE_URL}/api/leads")
+        match = [l for l in r2.json() if l["id"] == r.json()["id"]]
+        assert len(match) == 1
+        assert match[0]["source"] == "site"
+
     def test_optional_message_empty(self, api):
         unique = uuid.uuid4().hex[:8]
         payload = {

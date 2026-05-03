@@ -80,6 +80,17 @@ export default function Hero() {
             </span>
           </motion.div>
 
+          {/* Offer pill */}
+          <motion.div variants={item} className="mb-6 sm:mb-8">
+            <span
+              data-testid="hero-offer-pill"
+              className="inline-flex items-center gap-2 px-4 py-2 border border-[hsl(var(--gold))] bg-[hsl(var(--gold)/0.08)] text-[hsl(var(--gold))] text-[10px] md:text-[11px] tracking-elegant uppercase font-medium"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--gold))] animate-pulse" />
+              This Week · Flat 10% Off Your First Project
+            </span>
+          </motion.div>
+
           {/* Headline */}
           <motion.h1
             variants={item}

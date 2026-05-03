@@ -1,0 +1,59 @@
+{
+  "summary": "Validated iteration 2 changes (Resend email integration, 8s EnquiryPopup, hero/contact offer banners, source tracking). All 10 backend pytest cases pass (added 2 new source-tracking tests). All 7 new frontend behaviours verified end-to-end against the public REACT_APP_BACKEND_URL with zero console errors.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "POST /api/leads (email side-effect)", "issue": "Resend free tier rate-limit (5 req/s) was hit during burst tests — log shows 'Lead email failed: Too many requests'. Lead creation itself still returns 200 (fire-and-forget), so user-facing flow is unaffected, but a few notification emails are silently dropped under burst load. Consider queue/backoff or a transactional email provider with higher limits if Google Ads traffic spikes."}
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "ContactCTA offer banner", "issues": ["Visual concatenation: '%This Week Only Enquire now…' renders the % glyph immediately adjacent to the heading without any gap because the icon circle and text wrap reflow on narrow widths. Functionally correct (icon is in its own span with flex gap-3) but worth a quick eyeball on small viewports."]},
+      {"screen": "EnquiryPopup", "issues": ["Studio image is the existing luxury stock photo (Unsplash), not a real studio image yet — review_request explicitly noted this is intentional for now."]}
+    ]
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_leads_api.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "(Optional) Consider rate-limit handling/retry for Resend under burst traffic — not blocking.",
+    "(Optional) Replace popup stock image with real studio photograph when available."
+  ],
+  "critical_code_review_comments": [
+    "server.py: asyncio.create_task for fire-and-forget email is correct; _send_lead_email swallows all exceptions so lead creation is never blocked — good defensive pattern.",
+    "server.py: source field is normalised via .strip().lower() before insert — consistent and safe for the admin filter.",
+    "EnquiryPopup.jsx: success-state heading says 'Your 10% offer is secured.' which matches the success toast and the review_request acceptance criterion. sessionStorage is set on BOTH close and successful submit (good — prevents double-claim).",
+    "EnquiryPopup.jsx: backdrop click (onClick={close} on the outer overlay) also dismisses the popup. Acceptable luxury UX but means a misclick can dismiss the offer; consider requiring explicit close for paid-traffic landing pages.",
+    "ContactCTA.jsx: error toast handling now extracts err.response.data.detail, but FastAPI 422 returns detail as an array of objects so it falls through to 'Submission failed.' generic — acceptable.",
+    "AdminLeads.jsx: Source column uses l.source || 'site' fallback so legacy rows without source still render correctly — good.",
+    "No rate limiting on POST /api/leads still applies; with the popup auto-firing, spam risk is slightly higher. Consider a simple per-IP rate limiter."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_leads_api.py (added test_create_lead_with_source + test_create_lead_default_source)"
+  ],
+  "success_rate": {"backend": "100% (10/10)", "frontend": "100% (7/7 acceptance items)"},
+  "test_credentials": "none required (admin is unauthenticated)",
+  "seed_data_creation": "Created TEST_-prefixed lead records via API + UI for all flows (popup_offer, main_form, site sources). 15 entries currently visible in admin.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Full pytest suite at /app/backend/tests/test_leads_api.py (10 tests, all passing). Resend API key in /app/backend/.env is in test mode — actual email delivery only to the account-owner inbox, but resend.Emails.send returns a real id which is logged as 'Lead email sent: <uuid>' (verified in /var/log/supervisor/backend.err.log). Popup sessionStorage key is 'lumiere_popup_seen_v1' — clear it between manual test runs. To trigger popup quickly, edit timer in EnquiryPopup.jsx line 30 (currently 8000ms).",
+  "verified_flows": [
+    "POST /api/leads with source=popup_offer / main_form / default → all stored correctly",
+    "GET /api/leads returns 'source' field on every lead",
+    "Resend email triggered on lead creation (log: 'Lead email sent: <id>')",
+    "Invalid email returns 422; no email send attempted",
+    "Hero offer pill renders 'This Week · Flat 10% Off Your First Project'",
+    "ContactCTA offer banner renders with '10% off your first project' text",
+    "Main form submit button label is 'Claim My 10% Offer'; POSTs source=main_form; form clears on success",
+    "EnquiryPopup auto-opens after 8s; close button dismisses, sessionStorage='1', body scroll restored",
+    "Popup does not reopen after dismissal (sessionStorage gating verified)",
+    "Body scroll locked while popup open, restored on close",
+    "Popup form POSTs source=popup_offer; success state shows 'Your 10% offer is secured' + 'Continue Browsing' button",
+    "/admin/leads shows new Source column with values in gold uppercase (SITE / POPUP_OFFER / MAIN_FORM)",
+    "Zero console errors across all flows"
+  ],
+  "rca of the issue": "N/A — no blocking issues found."
+}

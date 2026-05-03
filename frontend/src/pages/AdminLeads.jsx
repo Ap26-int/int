@@ -73,6 +73,7 @@ export default function AdminLeads() {
                   <th className="text-left p-4">Phone</th>
                   <th className="text-left p-4">Email</th>
                   <th className="text-left p-4">Project</th>
+                  <th className="text-left p-4">Source</th>
                   <th className="text-left p-4">Message</th>
                   <th className="text-left p-4">Received</th>
                 </tr>
@@ -88,6 +89,7 @@ export default function AdminLeads() {
                     <td className="p-4">{l.phone}</td>
                     <td className="p-4">{l.email}</td>
                     <td className="p-4">{l.project_type}</td>
+                    <td className="p-4 text-[hsl(var(--gold))] text-xs tracking-elegant uppercase">{l.source || "site"}</td>
                     <td className="p-4 max-w-xs truncate">{l.message || "—"}</td>
                     <td className="p-4 text-[hsl(var(--muted-foreground))]">
                       {new Date(l.created_at).toLocaleString()}

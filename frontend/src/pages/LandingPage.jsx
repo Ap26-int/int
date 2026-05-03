@@ -9,6 +9,7 @@ import WhyChooseUs from "../components/WhyChooseUs";
 import Testimonials from "../components/Testimonials";
 import ContactCTA from "../components/ContactCTA";
 import Footer from "../components/Footer";
+import EnquiryPopup from "../components/EnquiryPopup";
 
 export default function LandingPage() {
   useEffect(() => {
@@ -27,6 +28,7 @@ export default function LandingPage() {
       <Testimonials />
       <ContactCTA />
       <Footer />
+      <EnquiryPopup />
     </main>
   );
 }
