@@ -9,17 +9,16 @@ export default function Footer() {
       className="relative bg-[hsl(var(--obsidian))] border-t border-[hsl(var(--gold)/0.15)] pt-20 lg:pt-28"
     >
       <div className="lux-container">
-        {/* Giant brand wordmark */}
-        <div className="text-center mb-16">
-          <div className="text-[hsl(var(--gold))] text-[9px] sm:text-[10px] tracking-luxury uppercase mb-3 sm:mb-4 px-2">
+        {/* Brand logo */}
+        <div className="text-center mb-12 sm:mb-16">
+          <div className="text-[hsl(var(--gold))] text-[9px] sm:text-[10px] tracking-luxury uppercase mb-5 sm:mb-6 px-2">
             {BRAND.tagline}
           </div>
-          <h3 className="font-display italic text-[hsl(var(--ivory))] text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] leading-none tracking-tight">
-            Lumière
-          </h3>
-          <div className="text-[hsl(var(--muted-foreground))] text-xs tracking-luxury uppercase mt-3">
-            By Sambita Bose
-          </div>
+          <img
+            src="/lumiere-logo.png"
+            alt="Lumière By Sambita Bose"
+            className="h-32 sm:h-40 md:h-48 lg:h-56 w-auto object-contain mx-auto"
+          />
         </div>
 
         <div className="gold-line h-px w-full mb-12" />
