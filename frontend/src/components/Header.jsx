@@ -43,7 +43,7 @@ export default function Header() {
             <img
               src="/lumiere-logo.png"
               alt="Lumière By Sambita Bose"
-              className="h-12 md:h-14 lg:h-16 w-auto object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+              className="h-16 md:h-[72px] lg:h-20 w-auto object-contain transition-transform duration-500 group-hover:scale-[1.03]"
               loading="eager"
             />
           </button>
@@ -98,7 +98,7 @@ export default function Header() {
               <img
                 src="/lumiere-logo.png"
                 alt="Lumière By Sambita Bose"
-                className="h-11 w-auto object-contain"
+                className="h-14 w-auto object-contain"
               />
               <button
                 data-testid="mobile-menu-close"
