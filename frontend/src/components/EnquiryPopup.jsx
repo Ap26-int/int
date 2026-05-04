@@ -8,7 +8,7 @@ import { PROJECT_TYPES } from "../data/content";
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 const POPUP_KEY = "lumiere_popup_seen_v1";
 const POPUP_STUDIO_IMG =
-  "https://images.unsplash.com/photo-1773867567872-3ad1fa481082?crop=entropy&cs=srgb&fm=jpg&q=85&w=1200";
+  "https://customer-assets.emergentagent.com/job_lumiere-interior/artifacts/jfb8w04t_5.jpg";
 
 const initial = {
   name: "",

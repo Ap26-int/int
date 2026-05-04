@@ -61,7 +61,7 @@ export default function Hero() {
       {/* Content */}
       <motion.div
         style={{ opacity }}
-        className="relative z-10 h-full lux-container flex flex-col justify-center pt-24 sm:pt-28 lg:pt-32"
+        className="relative z-10 h-full lux-container flex flex-col justify-center pt-36 sm:pt-40 md:pt-44 lg:pt-40 pb-24"
       >
         <motion.div
           variants={stagger}
