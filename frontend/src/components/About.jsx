@@ -28,30 +28,30 @@ export default function About() {
             />
             <div className="absolute inset-0 ring-1 ring-inset ring-[hsl(var(--gold)/0.2)]" />
             {/* Award caption */}
-            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[hsl(var(--obsidian))] via-[hsl(var(--obsidian)/0.85)] to-transparent pt-16 pb-5 px-6">
+            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[hsl(var(--obsidian))] via-[hsl(var(--obsidian)/0.85)] to-transparent pt-16 pb-5 px-5 sm:px-6 sm:pr-44 lg:pr-56">
               <div className="flex items-center gap-3">
                 <span className="w-6 h-px bg-[hsl(var(--gold))]" />
-                <span className="text-[hsl(var(--gold))] tracking-luxury uppercase text-[10px]">
+                <span className="text-[hsl(var(--gold))] tracking-luxury uppercase text-[9px] sm:text-[10px]">
                   Celebrity Interior Designer
                 </span>
               </div>
-              <p className="text-[hsl(var(--ivory))] text-xs md:text-sm mt-2 font-light">
+              <p className="text-[hsl(var(--ivory))] text-[11px] sm:text-xs md:text-sm mt-2 font-light leading-snug">
                 Sambita Bose felicitated for excellence in Celebrity interior design
               </p>
             </div>
           </div>
-          {/* Floating founder monogram badge */}
+          {/* Floating founder name badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4, duration: 0.8 }}
-            className="absolute -bottom-4 right-4 sm:-bottom-6 sm:-right-6 lg:-bottom-10 lg:-right-10 bg-[hsl(var(--obsidian))] border border-[hsl(var(--gold)/0.3)] px-5 py-4 sm:px-8 sm:py-6 backdrop-blur-sm"
+            className="absolute right-3 -bottom-3 sm:-right-5 sm:-bottom-5 lg:-right-8 lg:-bottom-8 z-10 bg-[hsl(var(--obsidian))] border border-[hsl(var(--gold)/0.35)] px-5 py-3 sm:px-6 sm:py-4 backdrop-blur-sm shadow-[0_18px_40px_-12px_rgba(0,0,0,0.7)]"
           >
-            <div className="font-display italic text-[hsl(var(--gold))] text-3xl sm:text-5xl lg:text-6xl leading-none">
-              S.B.
+            <div className="font-display italic text-[hsl(var(--gold))] text-xl sm:text-2xl lg:text-3xl leading-none whitespace-nowrap">
+              Sambita Bose
             </div>
-            <div className="text-[hsl(var(--muted-foreground))] text-[9px] sm:text-[10px] tracking-luxury uppercase mt-1.5 sm:mt-2">
+            <div className="text-[hsl(var(--muted-foreground))] text-[8px] sm:text-[9px] tracking-luxury uppercase mt-1 sm:mt-1.5 whitespace-nowrap">
               Celebrity Interior Designer
             </div>
           </motion.div>
