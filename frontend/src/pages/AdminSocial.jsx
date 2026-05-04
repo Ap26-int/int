@@ -169,7 +169,7 @@ export default function AdminSocial() {
 
   return (
     <section data-testid="admin-social-page">
-      <SocialConnections onChange={() => load()} />
+      <SocialConnections onChange={load} />
 
       <div className="flex items-end justify-between gap-4 flex-wrap mb-10">
         <div>
