@@ -295,6 +295,12 @@ body {
     0% { background-position: -200% 0; }
     100% { background-position: 200% 0; }
 }
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-12deg); }
+    75% { transform: rotate(12deg); }
+}
 .text-gold-shimmer {
     background: linear-gradient(
         90deg,

@@ -57,7 +57,8 @@ class LeadCreate(BaseModel):
     name: str = Field(..., min_length=1, max_length=120)
     phone: str = Field(..., min_length=4, max_length=40)
     email: EmailStr
-    project_type: str = Field(..., min_length=1, max_length=80)
+    project_type: Optional[str] = Field(default="General Enquiry", max_length=80)
+    budget: Optional[str] = Field(default="", max_length=80)
     message: Optional[str] = Field(default="", max_length=2000)
     source: Optional[str] = Field(default="site", max_length=40)
 
@@ -68,11 +69,12 @@ class Lead(BaseModel):
     name: str
     phone: str
     email: str
-    project_type: str
+    project_type: str = "General Enquiry"
+    budget: str = ""
     message: str = ""
     source: str = "site"
-    status: str = "new"  # new | contacted | qualified | scheduled | won | lost
-    follow_up_date: Optional[str] = None  # ISO date string
+    status: str = "new"
+    follow_up_date: Optional[str] = None
     tags: List[str] = Field(default_factory=list)
     comments: List[dict] = Field(default_factory=list)
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
@@ -145,6 +147,7 @@ def _render_lead_email_html(lead: Lead) -> str:
               <tr><td style="color:#9a927f;">Phone</td><td style="color:#F5EFE6;">{lead.phone}</td></tr>
               <tr><td style="color:#9a927f;">Email</td><td style="color:#F5EFE6;">{lead.email}</td></tr>
               <tr><td style="color:#9a927f;">Project Type</td><td style="color:#F5EFE6;">{lead.project_type}</td></tr>
+              <tr><td style="color:#9a927f;">Budget</td><td style="color:#F5EFE6;">{lead.budget or '—'}</td></tr>
               <tr><td style="color:#9a927f;">Source</td><td style="color:#F5EFE6;">{lead.source}</td></tr>
               <tr><td style="color:#9a927f;vertical-align:top;">Message</td><td style="color:#F5EFE6;">{lead.message or '—'}</td></tr>
               <tr><td style="color:#9a927f;">Received</td><td style="color:#F5EFE6;">{lead.created_at.strftime('%d %b %Y · %H:%M UTC')}</td></tr>
@@ -207,7 +210,8 @@ async def create_lead(payload: LeadCreate):
             name=payload.name.strip(),
             phone=payload.phone.strip(),
             email=str(payload.email).strip().lower(),
-            project_type=payload.project_type.strip(),
+            project_type=(payload.project_type or "General Enquiry").strip(),
+            budget=(payload.budget or "").strip(),
             message=(payload.message or "").strip(),
             source=(payload.source or "site").strip().lower(),
         )

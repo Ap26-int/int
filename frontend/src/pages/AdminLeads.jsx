@@ -141,6 +141,7 @@ export default function AdminLeads() {
                 <th className="text-left p-4">Name</th>
                 <th className="text-left p-4">Status</th>
                 <th className="text-left p-4">Project</th>
+                <th className="text-left p-4">Budget</th>
                 <th className="text-left p-4">Phone</th>
                 <th className="text-left p-4">Source</th>
                 <th className="text-left p-4">Follow-up</th>
@@ -176,6 +177,7 @@ export default function AdminLeads() {
                       )}
                     </td>
                     <td className="p-4">{l.project_type}</td>
+                    <td className="p-4 text-[hsl(var(--ivory))] text-xs">{l.budget || "—"}</td>
                     <td className="p-4 text-[hsl(var(--muted-foreground))]">
                       {l.phone}
                     </td>

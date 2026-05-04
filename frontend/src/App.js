@@ -1,6 +1,7 @@
 import "@/App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
+import LuxuryInteriorLanding from "./pages/LuxuryInteriorLanding";
 import AdminLogin from "./pages/AdminLogin";
 import AdminLayout from "./pages/AdminLayout";
 import AdminLeads from "./pages/AdminLeads";
@@ -16,6 +17,7 @@ function App() {
         <AuthProvider>
           <Routes>
             <Route path="/" element={<LandingPage />} />
+            <Route path="/luxury-interior" element={<LuxuryInteriorLanding />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route
               path="/admin"
