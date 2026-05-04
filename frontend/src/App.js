@@ -1,17 +1,36 @@
 import "@/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
+import AdminLogin from "./pages/AdminLogin";
+import AdminLayout from "./pages/AdminLayout";
 import AdminLeads from "./pages/AdminLeads";
+import AdminSocial from "./pages/AdminSocial";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { AuthProvider } from "./context/AuthContext";
 import { Toaster } from "sonner";
 
 function App() {
   return (
     <div className="App dark">
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/admin/leads" element={<AdminLeads />} />
-        </Routes>
+        <AuthProvider>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route
+              path="/admin"
+              element={
+                <ProtectedRoute>
+                  <AdminLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route index element={<Navigate to="/admin/leads" replace />} />
+              <Route path="leads" element={<AdminLeads />} />
+              <Route path="social" element={<AdminSocial />} />
+            </Route>
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
       <Toaster
         position="top-center"
