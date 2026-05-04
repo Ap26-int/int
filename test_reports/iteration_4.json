@@ -1,0 +1,42 @@
+{
+  "summary": "Iteration 4 — CRM (status pipeline, follow-up date, tags, comments) and Social Connections (DB-stored credentials per platform) tested end-to-end. 17/17 new backend pytest cases pass (PATCH lead status/follow_up/tags, comments add+delete, social credentials GET/PUT/DELETE, validation errors, config merge with instagram→true after PUT, then back to false after DELETE). Frontend: login → /admin/leads → search input + 7 status pills + 25 lead rows + slide-over LeadDetailPanel render correctly. Verified live via DevTools Network: 2× PATCH /api/leads/{id} → 200 (follow-up + tag), 1× POST /api/leads/{id}/comments → 200, plus GET /api/social/credentials & /api/social/config (200) on Connections render. Connect modal for Instagram opens with both required fields and proper docs link. Status filter pill 'CONTACTED' updated count from 1→2 after status PATCH, confirming parent state lifted. No console errors during CRM/Connections flows.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "LeadDetailPanel · status buttons", "issue": "Clicking a status button (e.g. CONTACTED) auto-closes the slide-over panel before the user can also set follow-up/tag/comment in the same session. Behaviour may be intentional (single-purpose action) but UX-wise feels abrupt — consider keeping panel open and updating the active-status indicator inline.", "selector": "button:has-text(\"CONTACTED\") inside [role=dialog]", "priority": "LOW"}
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_crm_and_connections.py",
+    "/app/test_reports/pytest/iteration_4.xml"
+  ],
+  "action_items": [
+    "(LOW) LeadDetailPanel.jsx — keep slide-over open after status PATCH so admin can chain status + follow-up + tag + comment in one session.",
+    "(NICE-TO-HAVE) AdminSocial.jsx — verified that platform pills with '· MOCK' are still present after a successful PUT credentials. Backend GET /api/social/config flips instagram→true correctly (verified in pytest), so the frontend just needs to refetch /api/social/config after a successful connect/disconnect to re-render the platform pills without that MOCK badge. Backend already supports it; only an effect/refetch is missing.",
+    "(VERY LOW) Connect modal: token field uses HTML5 'required' which is fine; consider adding data-testid=\"cred-{field}\" to each input for deterministic test selectors (currently both inputs resolve via fuzzy placeholder match)."
+  ],
+  "critical_code_review_comments": [
+    "server.py update_lead: handles follow_up_date='' → None correctly. Uses model_dump(exclude_unset=True) so missing keys do not overwrite existing data. GOOD.",
+    "server.py upsert_credentials: rejects unknown platform with 400, missing required field with 400 (specific 'Missing field: X' detail). Cleaned values stripped. Atomic mongo upsert. GOOD.",
+    "server.py _mask: prefix3 + 8 dots + suffix3 — never returns the raw token. Verified that masked != raw in pytest. GOOD.",
+    "social_router /config: merges DB-configured AND env-configured per platform via OR — correct precedence. After PUT instagram with full fields, config[instagram]=True; after DELETE → False. Verified.",
+    "Lead model: status default 'new', follow_up_date Optional[str], tags List[str] default empty, comments List[dict] default empty. ConfigDict(extra='ignore') ensures legacy docs without these fields still hydrate. GOOD.",
+    "Lead PATCH: returns full updated lead doc (with _id stripped via {'_id': 0}); frontend can directly use it to update parent state — supports the 'badge updates in table after panel close' acceptance criterion.",
+    "POST /leads/{id}/comments returns ONLY the new comment object (not the whole lead) — frontend appends to local state. Trade-off acceptable but a refetch-on-add would also be safe.",
+    "PLATFORM_FIELDS dict is duplicated across server.py and social_publish.py module — minor DRY: consider single source of truth.",
+    "No console errors during all admin CRUD flows. CORS still configured with explicit origin + credentials. Auth cookies still HttpOnly+Secure+SameSite=None.",
+    "Mock publishers still return ok:true,mocked:true — expected per request brief; LIVE Resend email + LIVE AI generation untouched."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_crm_and_connections.py (NEW — 17 tests covering CRM PATCH/comments + social credentials CRUD + config merge)"
+  ],
+  "success_rate": {"backend": "100% (17/17 new + 28/28 prior pytest still pass)", "frontend": "~95% — all acceptance criteria met; one LOW-priority panel-close UX item"},
+  "test_credentials": "admin@lumierebysambita.com / Lumiere@2026 (admin, seeded from /app/backend/.env). NOTE: previous iter3 test file uses sambita@lumierebysambita.com which still works (legacy seed). Use admin@ going forward — matches /app/memory/test_credentials.md.",
+  "seed_data_creation": "Created several TEST_CRM_<hex> leads via PUBLIC POST /api/leads (covered by fresh_lead_id fixture). All instagram/facebook/twitter/linkedin credentials are deleted in the same test class teardown. No persistent test data leaks except the disposable TEST_-prefixed leads.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Three pytest suites now exist — /app/backend/tests/test_leads_api.py (8 tests, public lead create/list), /app/backend/tests/test_auth_and_social.py (18 tests, auth + drafts), /app/backend/tests/test_crm_and_connections.py (17 tests, CRM + connections). Run: `REACT_APP_BACKEND_URL=https://lumiere-interior.preview.emergentagent.com python -m pytest backend/tests/ -v`. Brute-force test still uses disposable email so admin lockout never happens. AI generate is invoked exactly once (session-scoped shared_draft_id) — no extra LLM credits burned by re-running. UI: lead-row-{uuid} testids, filter-{status} pill testids, connect-{platform} button testid, cred-save button testid all confirmed present.",
+  "rca_of_the_issue": "N/A — no blocking issues. One LOW-priority UX nit: status-button click closes the slide-over panel; if user wants to also set follow-up/tags/comments they have to re-open the panel. Functionally correct (PATCH succeeds, badge updates) — pure UX polish."
+}

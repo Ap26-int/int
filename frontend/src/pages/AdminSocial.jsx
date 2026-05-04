@@ -13,6 +13,7 @@ import {
   AlertCircle,
   Calendar,
 } from "lucide-react";
+import SocialConnections from "../components/SocialConnections";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
@@ -168,6 +169,8 @@ export default function AdminSocial() {
 
   return (
     <section data-testid="admin-social-page">
+      <SocialConnections onChange={() => load()} />
+
       <div className="flex items-end justify-between gap-4 flex-wrap mb-10">
         <div>
           <span className="text-[hsl(var(--gold))] tracking-luxury uppercase text-[10px]">

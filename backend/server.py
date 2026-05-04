@@ -71,13 +71,38 @@ class Lead(BaseModel):
     project_type: str
     message: str = ""
     source: str = "site"
+    status: str = "new"  # new | contacted | qualified | scheduled | won | lost
+    follow_up_date: Optional[str] = None  # ISO date string
+    tags: List[str] = Field(default_factory=list)
+    comments: List[dict] = Field(default_factory=list)
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    updated_at: Optional[str] = None
 
 
 class LeadResponse(BaseModel):
     success: bool
     id: str
     message: str
+
+
+class LeadUpdatePayload(BaseModel):
+    status: Optional[Literal["new", "contacted", "qualified", "scheduled", "won", "lost"]] = None
+    follow_up_date: Optional[str] = None  # ISO date or empty string to clear
+    tags: Optional[List[str]] = None
+    name: Optional[str] = Field(None, max_length=120)
+    phone: Optional[str] = Field(None, max_length=40)
+    email: Optional[EmailStr] = None
+    project_type: Optional[str] = Field(None, max_length=80)
+    message: Optional[str] = Field(None, max_length=2000)
+
+
+class CommentCreatePayload(BaseModel):
+    text: str = Field(..., min_length=1, max_length=2000)
+
+
+class SocialCredentialsPayload(BaseModel):
+    # accept any subset depending on platform
+    fields: dict = Field(default_factory=dict)
 
 
 class LoginPayload(BaseModel):
@@ -259,14 +284,165 @@ async def list_leads(admin: dict = Depends(get_current_admin)):
     return [_doc_to_lead(l) for l in leads]
 
 
+@api_router.get("/leads/{lead_id}")
+async def get_lead(lead_id: str, admin: dict = Depends(get_current_admin)):
+    lead = await db.leads.find_one({"id": lead_id}, {"_id": 0})
+    if not lead:
+        raise HTTPException(status_code=404, detail="Lead not found")
+    return _doc_to_lead(lead)
+
+
+@api_router.patch("/leads/{lead_id}")
+async def update_lead(
+    lead_id: str,
+    payload: LeadUpdatePayload,
+    admin: dict = Depends(get_current_admin),
+):
+    update = {}
+    for k, v in payload.model_dump(exclude_unset=True).items():
+        if k == "follow_up_date" and v == "":
+            update[k] = None
+        elif v is not None or k == "follow_up_date":
+            update[k] = v
+    if not update:
+        raise HTTPException(status_code=400, detail="Nothing to update")
+    update["updated_at"] = datetime.now(timezone.utc).isoformat()
+    res = await db.leads.update_one({"id": lead_id}, {"$set": update})
+    if res.matched_count == 0:
+        raise HTTPException(status_code=404, detail="Lead not found")
+    lead = await db.leads.find_one({"id": lead_id}, {"_id": 0})
+    return _doc_to_lead(lead)
+
+
+@api_router.post("/leads/{lead_id}/comments")
+async def add_lead_comment(
+    lead_id: str,
+    payload: CommentCreatePayload,
+    admin: dict = Depends(get_current_admin),
+):
+    comment = {
+        "id": str(uuid.uuid4()),
+        "text": payload.text.strip(),
+        "author_email": admin.get("email"),
+        "author_name": admin.get("name") or admin.get("email"),
+        "created_at": datetime.now(timezone.utc).isoformat(),
+    }
+    res = await db.leads.update_one(
+        {"id": lead_id},
+        {
+            "$push": {"comments": comment},
+            "$set": {"updated_at": datetime.now(timezone.utc).isoformat()},
+        },
+    )
+    if res.matched_count == 0:
+        raise HTTPException(status_code=404, detail="Lead not found")
+    return comment
+
+
+@api_router.delete("/leads/{lead_id}/comments/{comment_id}")
+async def delete_lead_comment(
+    lead_id: str,
+    comment_id: str,
+    admin: dict = Depends(get_current_admin),
+):
+    res = await db.leads.update_one(
+        {"id": lead_id},
+        {
+            "$pull": {"comments": {"id": comment_id}},
+            "$set": {"updated_at": datetime.now(timezone.utc).isoformat()},
+        },
+    )
+    if res.matched_count == 0:
+        raise HTTPException(status_code=404, detail="Lead not found")
+    return {"ok": True}
+
+
+# ============================================================
+#   SOCIAL CREDENTIALS (admin-only)
+# ============================================================
+PLATFORM_FIELDS = {
+    "instagram": ["ig_business_account_id", "page_access_token"],
+    "facebook": ["fb_page_id", "page_access_token"],
+    "twitter": ["bearer_token", "access_token", "access_token_secret"],
+    "linkedin": ["access_token", "author_urn"],
+}
+
+
+@social_router.get("/credentials")
+async def list_credentials(admin: dict = Depends(get_current_admin)):
+    docs = await db.social_credentials.find({}, {"_id": 0}).to_list(20)
+    by_platform = {d["platform"]: d for d in docs}
+    out = {}
+    for platform, fields in PLATFORM_FIELDS.items():
+        cred = by_platform.get(platform)
+        out[platform] = {
+            "configured": bool(cred and all(cred.get("fields", {}).get(f) for f in fields)),
+            "required_fields": fields,
+            "preview": (
+                {f: _mask(cred.get("fields", {}).get(f, "")) for f in fields}
+                if cred else {f: None for f in fields}
+            ),
+            "updated_at": cred.get("updated_at") if cred else None,
+        }
+    return out
+
+
+@social_router.put("/credentials/{platform}")
+async def upsert_credentials(
+    platform: str,
+    payload: SocialCredentialsPayload,
+    admin: dict = Depends(get_current_admin),
+):
+    if platform not in PLATFORM_FIELDS:
+        raise HTTPException(status_code=400, detail="Unknown platform")
+    required = PLATFORM_FIELDS[platform]
+    cleaned = {}
+    for f in required:
+        v = (payload.fields.get(f) or "").strip()
+        if not v:
+            raise HTTPException(status_code=400, detail=f"Missing field: {f}")
+        cleaned[f] = v
+    now = datetime.now(timezone.utc).isoformat()
+    await db.social_credentials.update_one(
+        {"platform": platform},
+        {"$set": {"platform": platform, "fields": cleaned, "updated_at": now}},
+        upsert=True,
+    )
+    return {"ok": True, "platform": platform, "configured": True}
+
+
+@social_router.delete("/credentials/{platform}")
+async def delete_credentials(platform: str, admin: dict = Depends(get_current_admin)):
+    if platform not in PLATFORM_FIELDS:
+        raise HTTPException(status_code=400, detail="Unknown platform")
+    await db.social_credentials.delete_one({"platform": platform})
+    return {"ok": True}
+
+
+def _mask(value: str) -> Optional[str]:
+    if not value:
+        return None
+    if len(value) <= 6:
+        return "•" * len(value)
+    return value[:3] + "•" * 8 + value[-3:]
+
+
 # ============================================================
 #   SOCIAL DRAFTS ROUTES (admin-only)
 # ============================================================
 @social_router.get("/config")
 async def social_config(admin: dict = Depends(get_current_admin)):
+    # configured_platforms reads env; merge with DB
+    db_creds = await db.social_credentials.find({}, {"_id": 0}).to_list(20)
+    db_configured = {
+        d["platform"]: bool(d.get("fields") and all(d["fields"].get(f) for f in PLATFORM_FIELDS.get(d["platform"], [])))
+        for d in db_creds
+    }
+    env_configured = configured_platforms()
+    merged = {p: bool(db_configured.get(p)) or bool(env_configured.get(p)) for p in PLATFORMS}
     return {
         "platforms": list(PLATFORMS),
-        "configured": configured_platforms(),
+        "configured": merged,
         "daily_time_ist": f"{SOCIAL_HOUR_IST:02d}:{SOCIAL_MIN_IST:02d}",
     }
 
