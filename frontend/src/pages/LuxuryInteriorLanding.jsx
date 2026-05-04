@@ -19,6 +19,7 @@ import {
   Building2,
 } from "lucide-react";
 import FloatingActions from "../components/FloatingActions";
+import About from "../components/About";
 import { BRAND } from "../data/content";
 import { LANDING_TESTIMONIALS, LANDING_GALLERY, BUDGETS } from "../data/landing-content";
 
@@ -641,6 +642,7 @@ export default function LuxuryInteriorLanding() {
     <main data-testid="luxury-interior-landing" className="bg-[hsl(var(--obsidian))]">
       <MiniHeader />
       <HeroSection />
+      <About />
       <StatsBar />
       <ServicesGrid />
       <GallerySection />
