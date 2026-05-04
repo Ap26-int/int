@@ -264,10 +264,10 @@ function HeroSection() {
             data-testid="luxury-hero-headline"
             className="font-display text-[hsl(var(--ivory))] text-[2.25rem] xs:text-4xl sm:text-5xl md:text-6xl lg:text-[5.5rem] leading-[0.95] tracking-[-0.02em] font-light"
           >
-            Homes designed{" "}
-            <em className="italic text-[hsl(var(--gold))]">like couture.</em>
+            Elevate your{" "}
+            <em className="italic text-[hsl(var(--gold))]">Home</em>,
             <br />
-            Built to last a lifetime.
+            Celebrity Style.
           </motion.h1>
 
           <motion.p
