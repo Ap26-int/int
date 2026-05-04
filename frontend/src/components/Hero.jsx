@@ -61,7 +61,7 @@ export default function Hero() {
       {/* Content */}
       <motion.div
         style={{ opacity }}
-        className="relative z-10 h-full lux-container flex flex-col justify-center pt-36 sm:pt-40 md:pt-44 lg:pt-40 pb-24"
+        className="relative z-10 h-full lux-container flex flex-col justify-center pt-44 sm:pt-48 md:pt-52 lg:pt-48 pb-24"
       >
         <motion.div
           variants={stagger}
@@ -95,7 +95,7 @@ export default function Hero() {
           <motion.h1
             variants={item}
             data-testid="hero-headline"
-            className="font-display text-[hsl(var(--ivory))] text-[2.5rem] xs:text-5xl sm:text-6xl md:text-7xl lg:text-[7.5rem] leading-[0.95] tracking-[-0.02em] font-light"
+            className="font-display text-[hsl(var(--ivory))] text-[2rem] xs:text-4xl sm:text-5xl md:text-6xl lg:text-[6rem] leading-[0.95] tracking-[-0.02em] font-light"
           >
             Elevate your <em className="italic text-[hsl(var(--gold))]">Home</em>,
             <br />
