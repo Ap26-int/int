@@ -344,19 +344,36 @@ body {
     border-bottom: 1px solid hsl(var(--border));
     border-radius: 0;
     padding: 1rem 0;
-    color: hsl(var(--foreground));
+    color: hsl(var(--foreground)) !important;
+    -webkit-text-fill-color: hsl(var(--foreground));
     font-family: 'Manrope', sans-serif;
     font-size: 0.95rem;
     width: 100%;
     transition: border-color 300ms ease;
     outline: none;
+    caret-color: hsl(var(--gold));
 }
 .lux-input::placeholder {
     color: hsl(var(--muted-foreground));
+    -webkit-text-fill-color: hsl(var(--muted-foreground));
     letter-spacing: 0.05em;
+    opacity: 0.7;
 }
 .lux-input:focus {
     border-bottom-color: hsl(var(--gold));
+}
+/* Autofill — Chrome paints inputs blue-on-blue otherwise */
+.lux-input:-webkit-autofill,
+.lux-input:-webkit-autofill:hover,
+.lux-input:-webkit-autofill:focus {
+    -webkit-text-fill-color: hsl(var(--foreground)) !important;
+    -webkit-box-shadow: 0 0 0 1000px hsl(var(--obsidian)) inset !important;
+    transition: background-color 9999s ease-in-out 0s;
+}
+/* Native select option colors (most browsers honour these) */
+select.lux-input option {
+    background: hsl(var(--obsidian));
+    color: hsl(var(--ivory));
 }
 
 /* Hide debug wrapper utility */

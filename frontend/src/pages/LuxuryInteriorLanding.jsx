@@ -93,19 +93,25 @@ function LeadForm({ compact = false }) {
     <form
       onSubmit={submit}
       data-testid="luxury-lead-form"
-      className={`bg-[hsl(var(--obsidian)/0.85)] backdrop-blur-md border border-[hsl(var(--gold))]/35 ${
-        compact ? "p-6" : "p-7 sm:p-8 lg:p-9"
+      className={`relative bg-gradient-to-b from-[hsl(0_0%_7%)] to-[hsl(var(--obsidian))] backdrop-blur-md border border-[hsl(var(--gold))]/45 shadow-[0_30px_70px_-20px_rgba(201,169,97,0.35),0_10px_40px_-10px_rgba(0,0,0,0.8)] ${
+        compact ? "p-5 sm:p-6" : "p-6 sm:p-7"
       }`}
       noValidate
     >
-      <div className="text-[hsl(var(--gold))] text-[10px] tracking-luxury uppercase mb-2">
+      {/* gold corner ornaments */}
+      <span className="pointer-events-none absolute -top-px -left-px w-6 h-6 border-t border-l border-[hsl(var(--gold))]" />
+      <span className="pointer-events-none absolute -top-px -right-px w-6 h-6 border-t border-r border-[hsl(var(--gold))]" />
+      <span className="pointer-events-none absolute -bottom-px -left-px w-6 h-6 border-b border-l border-[hsl(var(--gold))]" />
+      <span className="pointer-events-none absolute -bottom-px -right-px w-6 h-6 border-b border-r border-[hsl(var(--gold))]" />
+
+      <div className="text-[hsl(var(--gold))] text-[10px] tracking-luxury uppercase mb-1.5">
         Enquire Now
       </div>
-      <h3 className="font-display italic text-[hsl(var(--ivory))] text-2xl sm:text-3xl font-light leading-tight">
+      <h3 className="font-display italic text-[hsl(var(--ivory))] text-2xl sm:text-[1.7rem] font-light leading-tight">
         Begin your{" "}
         <em className="text-[hsl(var(--gold))]">luxury home</em>.
       </h3>
-      <p className="text-[hsl(var(--muted-foreground))] text-xs sm:text-sm mt-3 mb-5 leading-relaxed">
+      <p className="text-[hsl(var(--muted-foreground))] text-[11px] sm:text-xs mt-2 mb-4 leading-relaxed">
         For project enquiries, fill out the form, or contact us at{" "}
         <a
           href={`tel:${BRAND.phone.replace(/\s/g, "")}`}
@@ -116,9 +122,9 @@ function LeadForm({ compact = false }) {
         .
       </p>
 
-      <div className="space-y-1.5">
+      <div className="space-y-0">
         <div>
-          <label className="text-[10px] tracking-luxury uppercase text-[hsl(var(--muted-foreground))]">
+          <label className="text-[10px] tracking-luxury uppercase text-[hsl(var(--gold))/0.85)] text-[hsl(var(--gold))]">
             Full Name<span className="text-[hsl(var(--gold))]">*</span>
           </label>
           <input
@@ -128,11 +134,12 @@ function LeadForm({ compact = false }) {
             value={form.name}
             onChange={change}
             className="lux-input"
+            style={{ padding: "0.6rem 0" }}
             required
           />
         </div>
         <div>
-          <label className="text-[10px] tracking-luxury uppercase text-[hsl(var(--muted-foreground))]">
+          <label className="text-[10px] tracking-luxury uppercase text-[hsl(var(--gold))]">
             Phone Number<span className="text-[hsl(var(--gold))]">*</span>
           </label>
           <input
@@ -142,11 +149,12 @@ function LeadForm({ compact = false }) {
             value={form.phone}
             onChange={change}
             className="lux-input"
+            style={{ padding: "0.6rem 0" }}
             required
           />
         </div>
         <div>
-          <label className="text-[10px] tracking-luxury uppercase text-[hsl(var(--muted-foreground))]">
+          <label className="text-[10px] tracking-luxury uppercase text-[hsl(var(--gold))]">
             Email ID<span className="text-[hsl(var(--gold))]">*</span>
           </label>
           <input
@@ -156,11 +164,12 @@ function LeadForm({ compact = false }) {
             value={form.email}
             onChange={change}
             className="lux-input"
+            style={{ padding: "0.6rem 0" }}
             required
           />
         </div>
         <div>
-          <label className="text-[10px] tracking-luxury uppercase text-[hsl(var(--muted-foreground))]">
+          <label className="text-[10px] tracking-luxury uppercase text-[hsl(var(--gold))]">
             Choose Budget<span className="text-[hsl(var(--gold))]">*</span>
           </label>
           <select
@@ -169,6 +178,7 @@ function LeadForm({ compact = false }) {
             value={form.budget}
             onChange={change}
             className="lux-input bg-[hsl(var(--obsidian))]"
+            style={{ padding: "0.6rem 0", colorScheme: "dark" }}
           >
             {BUDGETS.map((b) => (
               <option key={b} value={b}>
@@ -178,7 +188,7 @@ function LeadForm({ compact = false }) {
           </select>
         </div>
         <div>
-          <label className="text-[10px] tracking-luxury uppercase text-[hsl(var(--muted-foreground))]">
+          <label className="text-[10px] tracking-luxury uppercase text-[hsl(var(--gold))]">
             Any Other Information
           </label>
           <textarea
@@ -188,6 +198,7 @@ function LeadForm({ compact = false }) {
             onChange={change}
             rows={2}
             className="lux-input resize-none"
+            style={{ padding: "0.6rem 0" }}
             placeholder="Project location, timeline, vision…"
           />
         </div>
@@ -197,12 +208,12 @@ function LeadForm({ compact = false }) {
         data-testid="lf-submit"
         type="submit"
         disabled={loading}
-        className="btn-gold w-full justify-center mt-6 disabled:opacity-60"
+        className="btn-gold w-full justify-center mt-5 disabled:opacity-60 shadow-[0_8px_24px_-6px_rgba(201,169,97,0.5)]"
       >
         {loading ? "Sending…" : "Contact Us"}
         <ArrowRight size={14} strokeWidth={1.5} />
       </button>
-      <p className="mt-3 text-[hsl(var(--muted-foreground))] text-[10px] text-center">
+      <p className="mt-2.5 text-[hsl(var(--muted-foreground))] text-[10px] text-center">
         Delhi, India · We respond within 24 hours
       </p>
     </form>
@@ -586,7 +597,7 @@ function MiniHeader() {
     <header className="fixed top-0 inset-x-0 z-30 backdrop-blur-xl bg-[hsl(var(--obsidian)/0.7)] border-b border-[hsl(var(--gold)/0.12)]">
       <div className="lux-container flex items-center justify-between py-4">
         <a href="/" className="flex items-center">
-          <img src="/lumiere-logo.png" alt="Lumière" className="h-12 sm:h-14 w-auto" />
+          <img src="/lumiere-logo.png" alt="Lumière" className="h-16 sm:h-20 w-auto" />
         </a>
         <a
           href="#enquire"
