@@ -73,7 +73,7 @@ export default function Hero() {
           <motion.h1
             variants={item}
             data-testid="hero-headline"
-            className="font-display text-[hsl(var(--ivory))] text-[1.5rem] xs:text-[1.7rem] sm:text-3xl md:text-4xl lg:text-[4.2rem] leading-[1] tracking-[-0.02em] font-light"
+            className="font-display text-[hsl(var(--ivory))] text-[1.5rem] xs:text-[1.7rem] sm:text-3xl md:text-4xl lg:text-[4.2rem] leading-[1.15] tracking-[-0.02em] font-light"
           >
             Elevate your <em className="italic text-[hsl(var(--gold))]">Home</em>,
             <br />
