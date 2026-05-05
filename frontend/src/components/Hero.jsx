@@ -61,7 +61,7 @@ export default function Hero() {
       {/* Content */}
       <motion.div
         style={{ opacity }}
-        className="relative z-10 h-full lux-container flex flex-col justify-center pt-44 sm:pt-48 md:pt-52 lg:pt-48 pb-24"
+        className="relative z-10 h-full lux-container flex flex-col justify-end pt-32 sm:pt-36 md:pt-40 pb-32 lg:pb-40"
       >
         <motion.div
           variants={stagger}
@@ -70,7 +70,7 @@ export default function Hero() {
           className="max-w-5xl"
         >
           {/* Overline */}
-          <motion.div variants={item} className="flex items-center gap-4 mb-6 sm:mb-8">
+          <motion.div variants={item} className="flex items-center gap-4 mb-3">
             <span className="w-10 sm:w-12 h-px bg-[hsl(var(--gold))]" />
             <span
               className="text-[hsl(var(--gold))] tracking-luxury uppercase text-[10px] md:text-xs font-medium"
@@ -81,7 +81,7 @@ export default function Hero() {
           </motion.div>
 
           {/* Offer pill */}
-          <motion.div variants={item} className="mb-6 sm:mb-8">
+          <motion.div variants={item} className="mb-3">
             <span
               data-testid="hero-offer-pill"
               className="inline-flex items-center gap-2 px-4 py-2 border border-[hsl(var(--gold))] bg-[hsl(var(--gold)/0.08)] text-[hsl(var(--gold))] text-[10px] md:text-[11px] tracking-elegant uppercase font-medium"
@@ -91,11 +91,11 @@ export default function Hero() {
             </span>
           </motion.div>
 
-          {/* Headline */}
+          {/* Headline — 30% smaller */}
           <motion.h1
             variants={item}
             data-testid="hero-headline"
-            className="font-display text-[hsl(var(--ivory))] text-[2rem] xs:text-4xl sm:text-5xl md:text-6xl lg:text-[6rem] leading-[0.95] tracking-[-0.02em] font-light"
+            className="font-display text-[hsl(var(--ivory))] text-[1.5rem] xs:text-[1.7rem] sm:text-3xl md:text-4xl lg:text-[4.2rem] leading-[1] tracking-[-0.02em] font-light"
           >
             Elevate your <em className="italic text-[hsl(var(--gold))]">Home</em>,
             <br />
@@ -105,7 +105,7 @@ export default function Hero() {
           {/* Subtext */}
           <motion.p
             variants={item}
-            className="mt-8 sm:mt-10 max-w-xl text-[hsl(var(--muted-foreground))] text-sm sm:text-base md:text-lg leading-relaxed font-light"
+            className="mt-4 max-w-xl text-[hsl(var(--muted-foreground))] text-sm sm:text-base md:text-lg leading-relaxed font-light"
           >
             Bespoke residential interiors crafted for India's most discerning
             homeowners. Quiet luxury, considered detail, finished to a
@@ -115,7 +115,7 @@ export default function Hero() {
           {/* CTAs */}
           <motion.div
             variants={item}
-            className="mt-10 sm:mt-12 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4"
+            className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4"
           >
             <button
               data-testid="hero-cta-consult"
