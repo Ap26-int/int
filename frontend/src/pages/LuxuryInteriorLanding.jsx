@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
 import {
@@ -39,9 +40,9 @@ const SERVICES = [
 const initialForm = { name: "", phone: "", email: "", budget: BUDGETS[0], message: "" };
 
 function LeadForm({ compact = false }) {
+  const navigate = useNavigate();
   const [form, setForm] = useState(initialForm);
   const [loading, setLoading] = useState(false);
-  const [done, setDone] = useState(false);
 
   const change = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
   const submit = async (e) => {
@@ -57,38 +58,14 @@ function LeadForm({ compact = false }) {
         project_type: "Luxury Interior Enquiry",
         source: "luxury-interior",
       });
-      setDone(true);
-      toast.success("Thank you. Our studio will reach out within 24 hours.");
+      toast.success("Thank you. Redirecting…");
+      // Redirect to thank-you page
+      setTimeout(() => navigate("/thank-you"), 600);
     } catch {
       toast.error("Something went wrong. Please try again.");
-    } finally {
       setLoading(false);
     }
   };
-
-  if (done) {
-    return (
-      <div
-        data-testid="lead-form-success"
-        className="bg-[hsl(0_0%_5%)] border border-[hsl(var(--gold))] p-8 sm:p-10 text-center"
-      >
-        <div className="w-14 h-14 mx-auto rounded-full border border-[hsl(var(--gold))] flex items-center justify-center text-[hsl(var(--gold))] mb-5">
-          <Check size={26} strokeWidth={1.5} />
-        </div>
-        <h3 className="font-display italic text-[hsl(var(--ivory))] text-2xl sm:text-3xl">
-          We've received your enquiry.
-        </h3>
-        <p className="text-[hsl(var(--muted-foreground))] text-sm mt-3 leading-relaxed">
-          A senior member of our studio will reach out within 24 hours. For urgent
-          conversations, call us directly at{" "}
-          <a href={`tel:${BRAND.phone.replace(/\s/g, "")}`} className="text-[hsl(var(--gold))]">
-            {BRAND.phone}
-          </a>
-          .
-        </p>
-      </div>
-    );
-  }
 
   return (
     <form

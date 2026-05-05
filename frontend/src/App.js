@@ -2,6 +2,7 @@ import "@/App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import LuxuryInteriorLanding from "./pages/LuxuryInteriorLanding";
+import ThankYou from "./pages/ThankYou";
 import AdminLogin from "./pages/AdminLogin";
 import AdminLayout from "./pages/AdminLayout";
 import AdminLeads from "./pages/AdminLeads";
@@ -18,6 +19,7 @@ function App() {
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/luxury-interior" element={<LuxuryInteriorLanding />} />
+            <Route path="/thank-you" element={<ThankYou />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route
               path="/admin"
