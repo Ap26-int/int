@@ -53,6 +53,13 @@ export default function Footer() {
                   {l.label}
                 </a>
               ))}
+              <a
+                data-testid="footer-luxury-interior"
+                href="/luxury-interior"
+                className="text-[hsl(var(--gold))] text-sm hover:underline transition-colors col-span-2 mt-2"
+              >
+                → Luxury Interior
+              </a>
             </div>
           </div>
 
