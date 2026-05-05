@@ -23,21 +23,21 @@ export default function Preloader() {
           }}
         >
           <div className="flex flex-col items-center gap-8">
+            <motion.img
+              src="/lumiere-logo.png"
+              alt="Lumière By Sambita Bose"
+              className="h-24 sm:h-32 lg:h-40 w-auto"
+              initial={{ opacity: 0, y: 12, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 1.1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            />
             <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-[hsl(var(--gold))] tracking-luxury text-[10px] uppercase"
-            >
-              Lumière By Sambita Bose
-            </motion.div>
-            <motion.div
-              className="font-display text-[hsl(var(--ivory))] text-5xl md:text-7xl"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 1.2, delay: 0.3 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-[hsl(var(--gold))] tracking-luxury text-[10px] uppercase"
             >
-              <span className="italic">Lumière</span>
+              Celebrity Interior Designer · Delhi, India
             </motion.div>
             <div className="w-40 h-px overflow-hidden bg-[hsl(var(--border))] relative">
               <motion.div
