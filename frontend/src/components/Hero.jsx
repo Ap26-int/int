@@ -61,7 +61,7 @@ export default function Hero() {
       {/* Content */}
       <motion.div
         style={{ opacity }}
-        className="relative z-10 h-full lux-container flex flex-col justify-end pt-32 sm:pt-36 md:pt-40 pb-32 lg:pb-40"
+        className="relative z-10 h-full lux-container flex flex-col justify-end pt-32 sm:pt-36 md:pt-40 pb-24 lg:pb-32"
       >
         <motion.div
           variants={stagger}
@@ -69,28 +69,6 @@ export default function Hero() {
           animate="show"
           className="max-w-5xl"
         >
-          {/* Overline */}
-          <motion.div variants={item} className="flex items-center gap-4 mb-3">
-            <span className="w-10 sm:w-12 h-px bg-[hsl(var(--gold))]" />
-            <span
-              className="text-[hsl(var(--gold))] tracking-luxury uppercase text-[10px] md:text-xs font-medium"
-              data-testid="hero-overline"
-            >
-              Bespoke Interior Atelier · Est. 2012
-            </span>
-          </motion.div>
-
-          {/* Offer pill */}
-          <motion.div variants={item} className="mb-3">
-            <span
-              data-testid="hero-offer-pill"
-              className="inline-flex items-center gap-2 px-4 py-2 border border-[hsl(var(--gold))] bg-[hsl(var(--gold)/0.08)] text-[hsl(var(--gold))] text-[10px] md:text-[11px] tracking-elegant uppercase font-medium"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--gold))] animate-pulse" />
-              This Week · Flat 10% Off Your First Project
-            </span>
-          </motion.div>
-
           {/* Headline — 30% smaller */}
           <motion.h1
             variants={item}
@@ -111,6 +89,17 @@ export default function Hero() {
             homeowners. Quiet luxury, considered detail, finished to a
             celebrity-grade standard.
           </motion.p>
+
+          {/* Overline — moved below subtext, no overlap with logo */}
+          <motion.div variants={item} className="flex items-center gap-3 mt-5">
+            <span className="w-8 sm:w-10 h-px bg-[hsl(var(--gold))]" />
+            <span
+              className="text-[hsl(var(--gold))] tracking-luxury uppercase text-[10px] md:text-xs font-medium"
+              data-testid="hero-overline"
+            >
+              Bespoke Interior Atelier · Est. 2012
+            </span>
+          </motion.div>
 
           {/* CTAs */}
           <motion.div
